@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=kosha
+POSTGRES_USER=GAthuXqbWXwzdgWRQhKQETAPlUIRgCMe
+POSTGRES_PASSWORD=9h3rl5LtHLJnaG9U2CJbzQqGqjTfZK5VBGAOXmV6akCvBsSuznmG8DLHPOfopGH2
