@@ -61,6 +61,8 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
+    'jet.dashboard',
+    'jet',
     "django.contrib.admin",
 ]
 THIRD_PARTY_APPS = [
@@ -288,3 +290,7 @@ INSTALLED_APPS += ["compressor"]
 STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+# Jet
+# ------------------------------------------------------------------------------
+JET_SIDE_MENU_COMPACT = True
