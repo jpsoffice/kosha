@@ -11,7 +11,7 @@ A devotee database system
      :alt: Black code style
 
 
-:License: GPLv3
+:License: AGPLv3
 
 
 Settings
