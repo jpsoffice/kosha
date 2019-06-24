@@ -19,4 +19,5 @@ before_script:
   - export REDIS_URL=redis://localhost:6379/0
   - export CELERY_BROKER_URL=redis://localhost:6379/0
 script:
+  - "black --check ./"
   - "pytest"
