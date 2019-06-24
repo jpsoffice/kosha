@@ -26,3 +26,8 @@ coreapi==2.3.3  # https://github.com/core-api/python-client
 
 django-jet==1.0.8
 google-api-python-client==1.4.1
+
+# Django apps
+
+dj-places==3.1.0
+django-multiselectfield==0.1.8

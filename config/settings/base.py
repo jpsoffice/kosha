@@ -70,11 +70,14 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "rest_framework",
     "django_celery_beat",
+    "places",
+    "multiselectfield",
 ]
 
 LOCAL_APPS = [
     "kosha.users.apps.UsersConfig",
     # Your stuff: custom apps go here
+    "kosha.people.apps.PeopleConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -292,3 +295,13 @@ STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 # Jet
 # ------------------------------------------------------------------------------
 JET_SIDE_MENU_COMPACT = True
+
+# dj-places
+# ------------------------------------------------------------------------------
+PLACES_MAPS_API_KEY = ""
+PLACES_MAP_WIDGET_HEIGHT = 480
+PLACES_MAP_OPTIONS = '{"center": { "lat": 38.971584, "lng": -95.235072 }, "zoom": 10}'
+PLACES_MARKER_OPTIONS = '{"draggable": true}'
+
+# kosha
+GURU_MAHARAJ_ID = 0
