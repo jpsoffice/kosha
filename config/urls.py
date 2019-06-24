@@ -11,8 +11,10 @@ urlpatterns = [
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
     # Django Admin, use {% url 'admin:index' %}
-    path(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    path(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
+    path(r"^jet/", include("jet.urls", "jet")),  # Django JET URLS
+    path(
+        r"^jet/dashboard/", include("jet.dashboard.urls", "jet-dashboard")
+    ),  # Django JET dashboard URLS
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("kosha.users.urls", namespace="users")),
