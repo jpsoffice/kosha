@@ -4,9 +4,7 @@ Base settings to build other settings files upon.
 
 import environ
 
-ROOT_DIR = (
-    environ.Path(__file__) - 3
-)  # (kosha/config/settings/base.py - 3 = kosha/)
+ROOT_DIR = environ.Path(__file__) - 3  # (kosha/config/settings/base.py - 3 = kosha/)
 APPS_DIR = ROOT_DIR.path("kosha")
 
 env = environ.Env()
@@ -61,8 +59,8 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
-    'jet.dashboard',
-    'jet',
+    "jet.dashboard",
+    "jet",
     "django.contrib.admin",
 ]
 THIRD_PARTY_APPS = [
