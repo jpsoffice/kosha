@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 
 import environ
+import os
 
 ROOT_DIR = environ.Path(__file__) - 3  # (kosha/config/settings/base.py - 3 = kosha/)
 APPS_DIR = ROOT_DIR.path("kosha")
@@ -49,6 +50,7 @@ ROOT_URLCONF = "config.urls"
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = "config.wsgi.application"
 
+ENABLE_JET = os.environ.get("ENABLE_JET", "true").lower() == "true"
 # APPS
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
@@ -59,10 +61,12 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
-    "jet.dashboard",
-    "jet",
-    "django.contrib.admin",
 ]
+
+if ENABLE_JET:
+    DJANGO_APPS += ["jet.dashboard", "jet"]
+
+DJANGO_APPS += ["django.contrib.admin"]
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "allauth",
@@ -70,11 +74,15 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "rest_framework",
     "django_celery_beat",
+    "places",
 ]
 
 LOCAL_APPS = [
     "kosha.users.apps.UsersConfig",
     # Your stuff: custom apps go here
+    "kosha.people.apps.PeopleConfig",
+    "kosha.organizations.apps.OrganizationsConfig",
+    "kosha.regions.apps.RegionsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -202,7 +210,7 @@ CSRF_COOKIE_HTTPONLY = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter
 SECURE_BROWSER_XSS_FILTER = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
-X_FRAME_OPTIONS = "DENY"
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -292,3 +300,13 @@ STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 # Jet
 # ------------------------------------------------------------------------------
 JET_SIDE_MENU_COMPACT = True
+
+# dj-places
+# ------------------------------------------------------------------------------
+PLACES_MAPS_API_KEY = env("PLACES_MAPS_API_KEY")
+PLACES_MAP_WIDGET_HEIGHT = 480
+PLACES_MAP_OPTIONS = '{"center": { "lat": 38.971584, "lng": -95.235072 }, "zoom": 10}'
+PLACES_MARKER_OPTIONS = '{"draggable": true}'
+
+# kosha
+GURU_MAHARAJ_ID = 0
