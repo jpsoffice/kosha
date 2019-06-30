@@ -75,13 +75,14 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "django_celery_beat",
     "places",
-    "multiselectfield",
 ]
 
 LOCAL_APPS = [
     "kosha.users.apps.UsersConfig",
     # Your stuff: custom apps go here
     "kosha.people.apps.PeopleConfig",
+    "kosha.organizations.apps.OrganizationsConfig",
+    "kosha.regions.apps.RegionsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

@@ -1,9 +1,15 @@
+import datetime
+import json
+
+from iso3166 import countries
+
 from django.conf import settings
 from django.db.models import (
     Model,
     CharField,
     ImageField,
     DateField,
+    DateTimeField,
     ForeignKey,
     OneToOneField,
     ManyToManyField,
@@ -17,17 +23,15 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
-from multiselectfield import MultiSelectField
 from places.fields import PlacesField
 
 from kosha.useful.validators import phone_regex
+from kosha.useful.models import BaseModel
 from kosha.users.models import User
 
 GENDER_CHOICES = (("M", "Male"), ("F", "Female"), ("O", "Others"))
 
-NATIONALITY_CHOICES = (("IN", "India"),)
-
-OCCUPATION_CHOICES = (("IT", "Information Technology"),)
+OCCUPATION_CHOICES = (("IT", "Information Technology"), ("OT", "Others"))
 
 MARITAL_STATUS_CHOICES = (
     ("SGL", "Single"),
@@ -57,23 +61,29 @@ OUTSIDE_INITIATION_BY_CHOICES = (
 
 TEMPLE_ROLE_CHOICES = (("FT", "Full time"), ("NM", "Namhatta"))
 
-CONTACT_MODE_CHOICES = (("CP", "Congregational Preaching"),)
+LIFE_STATUS_CHOICES = (
+    ("AC", "Active"),
+    ("IN", "Inactive"),
+    ("LO", "Lost"),
+    ("PA", "Passed away"),
+)
 
-COMMUNICATION_CHANNEL_CHOICES = (("JPSFB", "JPS Facebook"),)
+DATA_SOURCE_CHOICES = (
+    ("IF", _("Initiation form")),
+    ("SF", _("Shelter form")),
+    ("AF", _("Aspiring form")),
+    ("INB", _("INB")),
+)
 
-SUBSCRIPTION_TOPIC_CHOICES = (("JPSB", "JPS Books"),)
 
-EMAIL_TOPIC_CHOICES = (("NM", "Namhatta"), ("BV", "Bhakti Vriksha"))
-
-
-class GuruRole(Model):
+class GuruRole(BaseModel):
     name = CharField(max_length=50)
 
     class Meta:
         db_table = "guru_role"
 
 
-class Guru(Model):
+class Guru(BaseModel):
     name = CharField(max_length=255, help_text=_("Name"))
     legal_name = CharField(max_length=255, blank=True, help_text=_("Legal name"))
     user = OneToOneField(
@@ -86,7 +96,7 @@ class Guru(Model):
 
 
 # Create your models here.
-class Person(Model):
+class Person(BaseModel):
 
     # Basic fields
     reference_number = CharField(
@@ -100,23 +110,89 @@ class Person(Model):
     )
     photo = ImageField(max_length=100, blank=True, null=True, help_text=_("Photo"))
     gender = CharField(max_length=1, choices=GENDER_CHOICES, help_text=_("Gender"))
-    dob = DateField(blank=True, null=True, help_text=_("Date of birth"))
+    dob = DateField(verbose_name=_("Date of birth"), blank=True, null=True)
     is_dob_ambiguous = BooleanField(
-        default=False, help_text=_("Is date of birth ambiguous?")
+        blank=True, null=True, verbose_name=_("Is date of birth ambiguous?")
+    )
+    dod = DateField(blank=True, null=True, verbose_name=_("Date of death"))
+    life_status = CharField(
+        max_length=2,
+        choices=LIFE_STATUS_CHOICES,
+        blank=True,
+        null=True,
+        help_text=_("Life status"),
     )
     #  age
-    nationality = CharField(
-        max_length=3, choices=NATIONALITY_CHOICES, help_text=_("Nationality")
+    nationality = ForeignKey(
+        "regions.Country",
+        blank=True,
+        null=True,
+        to_field="nationality",
+        related_name="nationals",
+        on_delete=SET_NULL,
+        help_text=_("Nationality"),
     )
-    occupation = CharField(
-        max_length=3, choices=OCCUPATION_CHOICES, help_text=_("Occupation")
+    occupation = ForeignKey(
+        "Occupation",
+        blank=True,
+        null=True,
+        on_delete=SET_NULL,
+        help_text=_("Occupation"),
     )
 
     # Contact details
+    # -------------------------------------------------------------------------
+    mobile = CharField(
+        validators=[phone_regex],
+        max_length=17,
+        blank=True,
+        null=True,
+        help_text=_("Mobile number"),
+    )
+    phone = CharField(
+        validators=[phone_regex],
+        max_length=17,
+        blank=True,
+        null=True,
+        help_text=_("Phone number"),
+    )
+    email = EmailField(blank=True, null=True, help_text=_("Email "))
+    present_address = ForeignKey(
+        "Address",
+        null=True,
+        blank=True,
+        on_delete=SET_NULL,
+        related_name="+",
+        help_text=_("Present address"),
+    )
+    permanent_address = ForeignKey(
+        "Address",
+        null=True,
+        blank=True,
+        on_delete=SET_NULL,
+        related_name="+",
+        help_text=_("Permanent address"),
+    )
+    # Readonly and auto populated from present address
+    country = ForeignKey(
+        "regions.Country",
+        null=True,
+        blank=True,
+        editable=False,
+        on_delete=SET_NULL,
+        related_name="persons",
+        help_text=_("Country, auto generated from present address"),
+    )
+    zone = ForeignKey(
+        "organizations.Zone",
+        blank=True,
+        null=True,
+        on_delete=SET_NULL,
+        help_text=_("Zone"),
+    )
 
-    # Present address
-
-    # Permanent address
+    # Family details
+    # -------------------------------------------------------------------------
 
     marital_status = CharField(
         max_length=3, choices=MARITAL_STATUS_CHOICES, help_text=_("Marital status")
@@ -136,6 +212,7 @@ class Person(Model):
     )
     relation_with_gm = CharField(
         max_length=3,
+        verbose_name=_("Relation with Guru Maharaj"),
         choices=RELATION_WITH_GM_CHOICES,
         help_text=_("Relation with Guru Maharaj"),
     )
@@ -223,7 +300,7 @@ class Person(Model):
         ),
     )
 
-    is_gm_siksha_guru = BooleanField(help_text=_("Is Guru Maharaj siksha guru?"))
+    is_gm_siksha_guru = BooleanField(verbose_name=_("Is Guru Maharaj Siksha Guru"))
 
     # Sisksha gurus
     siksha_gurus = ManyToManyField(Guru, blank=True, help_text=_("Siksha gurus"))
@@ -250,7 +327,7 @@ class Person(Model):
     # Temple details
     # -------------------------------------------------------------------------
     temple = ForeignKey(
-        "Temple",
+        "organizations.Temple",
         blank=True,
         null=True,
         on_delete=SET_NULL,
@@ -321,38 +398,70 @@ class Person(Model):
         blank=True, null=True, help_text=_("Email of national care coordinator")
     )
 
+    intensive_care = BooleanField(
+        blank=True, null=True, help_text=_("Is intensive care needed?")
+    )
+
     # Communication preferences
     # -------------------------------------------------------------------------
-    contact_modes = MultiSelectField(
-        choices=CONTACT_MODE_CHOICES,
+    contact_modes = ManyToManyField(
+        "ContactMode", blank=True, help_text=_("Modes for contact")
+    )
+    communication_channels = ManyToManyField(
+        "CommunicationChannel", blank=True, help_text=_("Channels for communuication")
+    )
+    subscription_topics = ManyToManyField(
+        "SubscriptionTopic", blank=True, help_text=_("Topics subscribed to")
+    )
+    email_topics = ManyToManyField(
+        "EmailTopic", blank=True, help_text=_("Topics subscribed via email")
+    )
+
+    # Office
+    # -------------------------------------------------------------------------
+    # office_notes = ManyToManyField('note.Note')
+    # gm_notes = ManyToManyField('note.Note', verbose_name='Guru Maharaj notes')
+    life_history = TextField(
+        max_length=2048,
+        blank=True,
+        default="",
+        help_text=_("Life history of the person"),
+    )
+    data_source = CharField(
+        max_length=3, choices=DATA_SOURCE_CHOICES, blank=True, null=True
+    )
+
+    updated_by = ForeignKey(
+        "users.User",
         blank=True,
         null=True,
-        help_text=_("Modes for contact"),
+        editable=False,
+        related_name="+",
+        on_delete=SET_NULL,
+        help_text="Updated by user",
     )
-    communication_channels = MultiSelectField(
-        choices=COMMUNICATION_CHANNEL_CHOICES,
+    approved = BooleanField(blank=True, null=True)
+    approved_by = ForeignKey(
+        "users.User",
         blank=True,
         null=True,
-        help_text=_("Channels for communuication"),
+        editable=False,
+        related_name="+",
+        on_delete=SET_NULL,
+        help_text="Approved by user",
     )
-    subscription_topics = MultiSelectField(
-        choices=SUBSCRIPTION_TOPIC_CHOICES,
-        blank=True,
-        null=True,
-        help_text=_("Topics subscribed to"),
-    )
-    email_topics = MultiSelectField(
-        choices=EMAIL_TOPIC_CHOICES,
-        blank=True,
-        null=True,
-        help_text=_("Topics subscribed via email"),
-    )
+    approved_at = DateTimeField(blank=True, null=True, editable=False)
 
     class Meta:
         db_table = "person"
 
+    @property
+    def age(self):
+        if self.dob:
+            return int((datetime.datetime.now() - self.dob).days / 365.25)
 
-class Meeting(Model):
+
+class Meeting(BaseModel):
     date = DateField()
     place = PlacesField()
     summary = TextField(max_length=1024, default="", help_text=_("Meeting summary"))
@@ -368,9 +477,80 @@ class Meeting(Model):
     class Meta:
         db_table = "meeting"
 
+    def __str__(self):
+        return "{} {}".format(self.person.name, self.date)
 
-class Temple(Model):
-    name = CharField(max_length=255)
+
+class ContactMode(BaseModel):
+    name = CharField(max_length=100, help_text=_("Name of contact mode"))
 
     class Meta:
-        db_table = "temple"
+        db_table = "contact_mode"
+
+    def __str__(self):
+        return self.name
+
+
+class CommunicationChannel(BaseModel):
+    name = CharField(max_length=100, help_text=_("Name of communication channel"))
+
+    class Meta:
+        db_table = "communication_channel"
+
+    def __str__(self):
+        return self.name
+
+
+class SubscriptionTopic(BaseModel):
+    name = CharField(max_length=100, help_text=_("Name of subscription topic"))
+
+    class Meta:
+        db_table = "subscription_topic"
+
+    def __str__(self):
+        return self.name
+
+
+class EmailTopic(BaseModel):
+    name = CharField(max_length=100, help_text=_("Name of email topic"))
+
+    class Meta:
+        db_table = "email_topic"
+
+    def __str__(self):
+        return self.name
+
+
+class Address(BaseModel):
+    addess_line_1 = CharField(max_length=100, help_text=_("Address line 1"))
+    address_line_2 = CharField(
+        max_length=100, blank=True, default="", help_text=_("Address line 2")
+    )
+    zipcode = CharField(max_length=10, help_text=_("Zipcode"))
+    locality = CharField(
+        max_length=100, help_text=_("Locality (City, town or village)")
+    )
+    state = CharField(max_length=255, help_text=_("State"))
+    country = ForeignKey(
+        "regions.Country", null=True, on_delete=SET_NULL, help_text=_("Country")
+    )
+
+    class Meta:
+        db_table = "address"
+        verbose_name = "Address"
+        verbose_name_plural = "Addresses"
+
+    def __str__(self):
+        return "{} {} {} {}".format(
+            self.country, self.state, self.locality, self.zipcode
+        )
+
+
+class Occupation(BaseModel):
+    name = CharField(max_length=100, unique=True, db_index=True, help_text=_("Name"))
+
+    class Meta:
+        db_table = "occupation"
+
+    def __str__(self):
+        return self.name

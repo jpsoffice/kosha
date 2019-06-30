@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from kosha.people.models import Person, Guru, GuruRole, Temple, Meeting
+from kosha.people.models import Person, Guru, GuruRole, Meeting
 
 # Register your models here.
 @admin.register(Person)
@@ -15,11 +15,6 @@ class GuruAdmin(admin.ModelAdmin):
 
 @admin.register(GuruRole)
 class GuruRoleAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Temple)
-class TempleAdmin(admin.ModelAdmin):
     pass
 
 
