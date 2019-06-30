@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 
 import environ
+import os
 
 ROOT_DIR = environ.Path(__file__) - 3  # (kosha/config/settings/base.py - 3 = kosha/)
 APPS_DIR = ROOT_DIR.path("kosha")
@@ -49,6 +50,7 @@ ROOT_URLCONF = "config.urls"
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = "config.wsgi.application"
 
+ENABLE_JET = os.environ.get("ENABLE_JET", "true").lower() == "true"
 # APPS
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
@@ -59,10 +61,12 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
-    "jet.dashboard",
-    "jet",
-    "django.contrib.admin",
 ]
+
+if ENABLE_JET:
+    DJANGO_APPS += ["jet.dashboard", "jet"]
+
+DJANGO_APPS += ["django.contrib.admin"]
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "allauth",
