@@ -9,7 +9,27 @@ class PresentAddressInline(admin.TabularInline):
 
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
-    # inlines = [PresentAddressInline,]
+    list_display = (
+        "name",
+        "reference_number",
+        "nationality",
+        "mobile",
+        "email",
+        "care_level",
+        "relation_with_gm",
+        "zone",
+        "temple",
+        "marital_status",
+    )
+    list_filter = (
+        "care_level",
+        "relation_with_gm",
+        "nationality",
+        "country",
+        "zone",
+        "temple",
+    )
+    search_fields = ("reference_number", "name", "mobile", "email")
     fieldsets = (
         (
             "Basic details",
