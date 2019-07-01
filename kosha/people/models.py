@@ -157,32 +157,56 @@ class Person(BaseModel):
         help_text=_("Phone number"),
     )
     email = EmailField(blank=True, null=True, help_text=_("Email "))
-    present_address = ForeignKey(
-        "Address",
-        null=True,
-        blank=True,
-        on_delete=SET_NULL,
-        related_name="+",
-        help_text=_("Present address"),
+
+    # Present address
+    address_line_1 = CharField(max_length=100, null=True, help_text=_("Address line 1"))
+    address_line_2 = CharField(
+        max_length=100, blank=True, null=True, help_text=_("Address line 2")
     )
-    permanent_address = ForeignKey(
-        "Address",
-        null=True,
-        blank=True,
-        on_delete=SET_NULL,
-        related_name="+",
-        help_text=_("Permanent address"),
+    zipcode = CharField(max_length=10, null=True, help_text=_("Zipcode"))
+    locality = CharField(
+        max_length=100, null=True, help_text=_("Locality (City, town or village)")
     )
-    # Readonly and auto populated from present address
+    state = CharField(max_length=255, null=True, help_text=_("State"))
     country = ForeignKey(
         "regions.Country",
         null=True,
-        blank=True,
-        editable=False,
+        related_name="present_persons",
         on_delete=SET_NULL,
-        related_name="persons",
-        help_text=_("Country, auto generated from present address"),
+        help_text=_("Country"),
     )
+
+    # Permanent address
+    permanent_address_line_1 = CharField(
+        max_length=100, null=True, verbose_name=_("Permanent address line 1")
+    )
+    permanent_address_line_2 = CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        default="",
+        verbose_name=_("Permanent address line 2"),
+    )
+    permanent_zipcode = CharField(
+        max_length=10, null=True, verbose_name=_("Permanent zipcode")
+    )
+    permanent_locality = CharField(
+        max_length=100,
+        null=True,
+        verbose_name=_("Permanent locality"),
+        help_text=_("Permanent Locality (City, town or village)"),
+    )
+    permanent_state = CharField(
+        max_length=255, null=True, verbose_name=_("Permanent state")
+    )
+    permanent_country = ForeignKey(
+        "regions.Country",
+        null=True,
+        related_name="permanent_persons",
+        on_delete=SET_NULL,
+        help_text=_("Permanent country"),
+    )
+
     zone = ForeignKey(
         "organizations.Zone",
         blank=True,
