@@ -479,6 +479,9 @@ class Person(BaseModel):
     class Meta:
         db_table = "person"
 
+    def __str__(self):
+        return self.name
+
     @property
     def age(self):
         if self.dob:
