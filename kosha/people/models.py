@@ -112,7 +112,7 @@ class Person(BaseModel):
     gender = CharField(max_length=1, choices=GENDER_CHOICES, help_text=_("Gender"))
     dob = DateField(verbose_name=_("Date of birth"), blank=True, null=True)
     is_dob_ambiguous = BooleanField(
-        blank=True, null=True, verbose_name=_("Is date of birth ambiguous?")
+        blank=True, default=False, verbose_name=_("Is date of birth ambiguous?")
     )
     dod = DateField(blank=True, null=True, verbose_name=_("Date of death"))
     life_status = CharField(
