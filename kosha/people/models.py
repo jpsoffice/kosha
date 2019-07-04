@@ -154,7 +154,7 @@ class Person(BaseModel):
     )
     #  age
     nationality = ForeignKey(
-        "regions.Country",
+        "regions.Nationality",
         blank=True,
         null=True,
         to_field="nationality",
