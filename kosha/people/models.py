@@ -50,9 +50,31 @@ CARE_LEVEL_CHOICES = (
     ("D2", "Brahmin"),
     ("S", "Siksha"),
     ("BTG", "Back to Godhead"),
+    ("RTK", "Ritvik"),
+    ("GB/S", "God brother or sister"),
+    ("Ex-D", "Ex Disciple"),
+    ("G", "Guidance"),
+    ("H", "Help"),
+    ("I", "Interest"),
+    ("PB", "Prayers and blessings"),
+    ("M", "Mission"),
+    ("U", "Unofficial siksha"),
+    ("C", "Special care"),
+    ("W", "Write questions"),
+    ("P", "Prayers"),
+    ("SN", "Spiritual nephew/niece"),
 )
 
-RELATION_WITH_GM_CHOICES = (("SS", "Spiritual son"), ("SD", "Spiritual daughter"))
+RELATION_WITH_GM_CHOICES = (
+    ("SS", "Spiritual son"),
+    ("SD", "Spiritual daughter"),
+    ("SSB", "Spiritual son bhakta"),
+    ("SDB", "Spiritual Daughter Bhaktin"),
+    ("SKD", "Siksha disciple"),
+    ("BTA", "Bhakta"),
+    ("BTI", "Bhaktin"),
+    ("WW", "Well wisher"),
+)
 
 OUTSIDE_INITIATION_BY_CHOICES = (
     ("VG", "Vaishnava Guru"),
@@ -84,8 +106,12 @@ class GuruRole(BaseModel):
 
 
 class Guru(BaseModel):
-    name = CharField(max_length=255, help_text=_("Name"))
-    legal_name = CharField(max_length=255, blank=True, help_text=_("Legal name"))
+    name = CharField(max_length=255, unique=True, help_text=_("Name"))
+    code = CharField(max_length=5, unique=True, null=True)
+    legal_name = CharField(
+        max_length=255, blank=True, null=True, help_text=_("Legal name")
+    )
+
     user = OneToOneField(
         User, null=True, blank=True, on_delete=SET_NULL, help_text=_("User")
     )
