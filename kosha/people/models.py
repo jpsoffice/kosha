@@ -31,7 +31,7 @@ from kosha.users.models import User
 
 GENDER_CHOICES = (("M", "Male"), ("F", "Female"), ("O", "Others"))
 
-OCCUPATION_CHOICES = (("IT", "Information Technology"), ("OT", "Others"))
+DOB_TYPE_CHOICES = (("A", "Actual"), ("C", "Calculated"))
 
 MARITAL_STATUS_CHOICES = (
     ("SGL", "Single"),
@@ -50,9 +50,31 @@ CARE_LEVEL_CHOICES = (
     ("D2", "Brahmin"),
     ("S", "Siksha"),
     ("BTG", "Back to Godhead"),
+    ("RTK", "Ritvik"),
+    ("GB/S", "God brother or sister"),
+    ("Ex-D", "Ex Disciple"),
+    ("G", "Guidance"),
+    ("H", "Help"),
+    ("I", "Interest"),
+    ("PB", "Prayers and blessings"),
+    ("M", "Mission"),
+    ("U", "Unofficial siksha"),
+    ("C", "Special care"),
+    ("W", "Write questions"),
+    ("P", "Prayers"),
+    ("SN", "Spiritual nephew/niece"),
 )
 
-RELATION_WITH_GM_CHOICES = (("SS", "Spiritual son"), ("SD", "Spiritual daughter"))
+RELATION_WITH_GM_CHOICES = (
+    ("SS", "Spiritual son"),
+    ("SD", "Spiritual daughter"),
+    ("SSB", "Spiritual son bhakta"),
+    ("SDB", "Spiritual Daughter Bhaktin"),
+    ("SKD", "Siksha disciple"),
+    ("BTA", "Bhakta"),
+    ("BTI", "Bhaktin"),
+    ("WW", "Well wisher"),
+)
 
 OUTSIDE_INITIATION_BY_CHOICES = (
     ("VG", "Vaishnava Guru"),
@@ -84,8 +106,12 @@ class GuruRole(BaseModel):
 
 
 class Guru(BaseModel):
-    name = CharField(max_length=255, help_text=_("Name"))
-    legal_name = CharField(max_length=255, blank=True, help_text=_("Legal name"))
+    name = CharField(max_length=255, unique=True, help_text=_("Name"))
+    code = CharField(max_length=5, unique=True, null=True)
+    legal_name = CharField(
+        max_length=255, blank=True, null=True, help_text=_("Legal name")
+    )
+
     user = OneToOneField(
         User, null=True, blank=True, on_delete=SET_NULL, help_text=_("User")
     )
@@ -101,6 +127,7 @@ class Person(BaseModel):
     # Basic fields
     reference_number = CharField(
         max_length=10,
+        editable=False,
         unique=True,
         help_text=_("Unique reference number for the devotee"),
     )
@@ -111,8 +138,11 @@ class Person(BaseModel):
     photo = ImageField(max_length=100, blank=True, null=True, help_text=_("Photo"))
     gender = CharField(max_length=1, choices=GENDER_CHOICES, help_text=_("Gender"))
     dob = DateField(verbose_name=_("Date of birth"), blank=True, null=True)
-    is_dob_ambiguous = BooleanField(
-        blank=True, null=True, verbose_name=_("Is date of birth ambiguous?")
+    dob_type = CharField(
+        max_length=1,
+        choices=DOB_TYPE_CHOICES,
+        default="A",
+        verbose_name=_("Date of birth type"),
     )
     dod = DateField(blank=True, null=True, verbose_name=_("Date of death"))
     life_status = CharField(
@@ -159,15 +189,20 @@ class Person(BaseModel):
     email = EmailField(blank=True, null=True, help_text=_("Email "))
 
     # Present address
-    address_line_1 = CharField(max_length=100, null=True, help_text=_("Address line 1"))
+    address_line_1 = CharField(
+        max_length=100, blank=True, null=True, help_text=_("Address line 1")
+    )
     address_line_2 = CharField(
         max_length=100, blank=True, null=True, help_text=_("Address line 2")
     )
-    zipcode = CharField(max_length=10, null=True, help_text=_("Zipcode"))
+    zipcode = CharField(max_length=10, blank=True, null=True, help_text=_("Zipcode"))
     locality = CharField(
-        max_length=100, null=True, help_text=_("Locality (City, town or village)")
+        max_length=100,
+        blank=True,
+        null=True,
+        help_text=_("Locality (City, town or village)"),
     )
-    state = CharField(max_length=255, null=True, help_text=_("State"))
+    state = CharField(max_length=255, blank=True, null=True, help_text=_("State"))
     country = ForeignKey(
         "regions.Country",
         null=True,
@@ -177,8 +212,12 @@ class Person(BaseModel):
     )
 
     # Permanent address
+    permanent_address_same_as_current = BooleanField(default=True)
     permanent_address_line_1 = CharField(
-        max_length=100, null=True, verbose_name=_("Permanent address line 1")
+        max_length=100,
+        blank=True,
+        null=True,
+        verbose_name=_("Permanent address line 1"),
     )
     permanent_address_line_2 = CharField(
         max_length=100,
@@ -188,19 +227,21 @@ class Person(BaseModel):
         verbose_name=_("Permanent address line 2"),
     )
     permanent_zipcode = CharField(
-        max_length=10, null=True, verbose_name=_("Permanent zipcode")
+        max_length=10, blank=True, null=True, verbose_name=_("Permanent zipcode")
     )
     permanent_locality = CharField(
         max_length=100,
+        blank=True,
         null=True,
         verbose_name=_("Permanent locality"),
         help_text=_("Permanent Locality (City, town or village)"),
     )
     permanent_state = CharField(
-        max_length=255, null=True, verbose_name=_("Permanent state")
+        max_length=255, blank=True, null=True, verbose_name=_("Permanent state")
     )
     permanent_country = ForeignKey(
         "regions.Country",
+        blank=True,
         null=True,
         related_name="permanent_persons",
         on_delete=SET_NULL,
