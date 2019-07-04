@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from kosha.people.models import Person, Guru, GuruRole, Meeting, Address
+from kosha.people.models import Person, Guru, GuruRole, Meeting, Address, Occupation
 
 
 class PresentAddressInline(admin.TabularInline):
@@ -163,4 +163,9 @@ class GuruRoleAdmin(admin.ModelAdmin):
 
 @admin.register(Meeting)
 class MeetingAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Occupation)
+class OccupationAdmin(admin.ModelAdmin):
     pass
