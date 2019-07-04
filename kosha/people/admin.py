@@ -30,6 +30,14 @@ class PersonAdmin(admin.ModelAdmin):
         "temple",
     )
     search_fields = ("reference_number", "name", "mobile", "email")
+    readonly_fields = (
+        "reference_number",
+        "approved_by",
+        "approved_at",
+        "created_at",
+        "updated_at",
+        "updated_by",
+    )
     fieldsets = (
         (
             "Basic details",
@@ -37,7 +45,7 @@ class PersonAdmin(admin.ModelAdmin):
                 "fields": (
                     ("reference_number", "photo"),
                     ("name", "initiated_name", "gender"),
-                    ("dob", "is_dob_ambiguous"),
+                    ("dob", "dob_type"),
                     ("dod", "life_status"),
                     ("nationality", "occupation"),
                 )
@@ -51,6 +59,7 @@ class PersonAdmin(admin.ModelAdmin):
                     ("address_line_1", "address_line_2", "locality"),
                     ("zipcode", "state"),
                     ("country"),
+                    ("permanent_address_same_as_current",),
                     (
                         "permanent_address_line_1",
                         "permanent_address_line_2",
@@ -130,7 +139,14 @@ class PersonAdmin(admin.ModelAdmin):
         ),
         (
             "Office details",
-            {"fields": (("life_history",), ("data_source",), ("approved",))},
+            {
+                "fields": (
+                    ("life_history",),
+                    ("data_source",),
+                    ("created_at", "updated_at", "updated_by"),
+                    ("approved", "approved_by", "approved_at"),
+                )
+            },
         ),
     )
 
