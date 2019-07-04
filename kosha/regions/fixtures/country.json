@@ -5,7 +5,6 @@
     "fields": {
       "name": "Andorra",
       "code": "AD",
-      "iso_code": "53",
       "nationality": "Andorian"
     }
   },
@@ -15,7 +14,6 @@
     "fields": {
       "name": "United Arab Emirates",
       "code": "AE",
-      "iso_code": "126",
       "nationality": "Emirian"
     }
   },
@@ -25,7 +23,6 @@
     "fields": {
       "name": "Afghanistan",
       "code": "AF",
-      "iso_code": "133",
       "nationality": "Afghani"
     }
   },
@@ -35,7 +32,6 @@
     "fields": {
       "name": "Anguilla",
       "code": "AI",
-      "iso_code": "55",
       "nationality": "Anguillan"
     }
   },
@@ -45,7 +41,6 @@
     "fields": {
       "name": "Armenia",
       "code": "AM",
-      "iso_code": "58",
       "nationality": "Armenian"
     }
   },
@@ -55,7 +50,6 @@
     "fields": {
       "name": "Angola",
       "code": "AO",
-      "iso_code": "54",
       "nationality": "Angolian"
     }
   },
@@ -65,7 +59,6 @@
     "fields": {
       "name": "Antarctica",
       "code": "AQ",
-      "iso_code": "55",
       "nationality": "Antarctic"
     }
   },
@@ -75,7 +68,6 @@
     "fields": {
       "name": "Argentina",
       "code": "AR",
-      "iso_code": "57",
       "nationality": "Argentine"
     }
   },
@@ -84,8 +76,7 @@
     "pk": 9,
     "fields": {
       "name": "Austria",
-      "code": "AS",
-      "iso_code": "3",
+      "code": "AT",
       "nationality": "Austrian"
     }
   },
@@ -95,7 +86,6 @@
     "fields": {
       "name": "Australia",
       "code": "AU",
-      "iso_code": "2",
       "nationality": "Australian"
     }
   },
@@ -105,7 +95,6 @@
     "fields": {
       "name": "Aruba",
       "code": "AW",
-      "iso_code": "59",
       "nationality": "Arubian"
     }
   },
@@ -114,8 +103,7 @@
     "pk": 12,
     "fields": {
       "name": "Bangladesh",
-      "code": "BA",
-      "iso_code": "45",
+      "code": "BD",
       "nationality": "Bangladeshi"
     }
   },
@@ -125,7 +113,6 @@
     "fields": {
       "name": "Barbados",
       "code": "BB",
-      "iso_code": "63",
       "nationality": "Barbadian"
     }
   },
@@ -135,7 +122,6 @@
     "fields": {
       "name": "Belgium",
       "code": "BE",
-      "iso_code": "4",
       "nationality": "Belgian"
     }
   },
@@ -145,7 +131,6 @@
     "fields": {
       "name": "Bahrain",
       "code": "BH",
-      "iso_code": "62",
       "nationality": "Bahrainian"
     }
   },
@@ -155,7 +140,6 @@
     "fields": {
       "name": "Bermuda",
       "code": "BM",
-      "iso_code": "67",
       "nationality": "Bermuda"
     }
   },
@@ -163,9 +147,8 @@
     "model": "regions.country",
     "pk": 17,
     "fields": {
-      "name": "Bolivia",
+      "name": "Bolivia, Plurinational State of",
       "code": "BO",
-      "iso_code": "69",
       "nationality": "Bolivian"
     }
   },
@@ -175,7 +158,6 @@
     "fields": {
       "name": "Brazil",
       "code": "BR",
-      "iso_code": "43",
       "nationality": "Brazilian"
     }
   },
@@ -185,7 +167,6 @@
     "fields": {
       "name": "Bahamas",
       "code": "BS",
-      "iso_code": "61",
       "nationality": "Bahameese"
     }
   },
@@ -195,7 +176,6 @@
     "fields": {
       "name": "Bhutan",
       "code": "BT",
-      "iso_code": "68",
       "nationality": "Bhutanese"
     }
   },
@@ -204,8 +184,7 @@
     "pk": 21,
     "fields": {
       "name": "Bulgaria",
-      "code": "BU",
-      "iso_code": "44",
+      "code": "BG",
       "nationality": "Bulgarian"
     }
   },
@@ -215,7 +194,6 @@
     "fields": {
       "name": "Belarus",
       "code": "BY",
-      "iso_code": "64",
       "nationality": "Belarusian"
     }
   },
@@ -225,7 +203,6 @@
     "fields": {
       "name": "Belize",
       "code": "BZ",
-      "iso_code": "65",
       "nationality": "Belizean"
     }
   },
@@ -235,7 +212,6 @@
     "fields": {
       "name": "Canada",
       "code": "CA",
-      "iso_code": "6",
       "nationality": "Canadian"
     }
   },
@@ -245,7 +221,6 @@
     "fields": {
       "name": "Congo",
       "code": "CG",
-      "iso_code": "72",
       "nationality": "Congolese"
     }
   },
@@ -254,8 +229,7 @@
     "pk": 26,
     "fields": {
       "name": "China",
-      "code": "CH",
-      "iso_code": "51",
+      "code": "CN",
       "nationality": "Chinese"
     }
   },
@@ -265,7 +239,6 @@
     "fields": {
       "name": "Switzerland",
       "code": "CH",
-      "iso_code": "35",
       "nationality": "Swiss"
     }
   },
@@ -275,7 +248,6 @@
     "fields": {
       "name": "Chile",
       "code": "CL",
-      "iso_code": "71",
       "nationality": "Chilean"
     }
   },
@@ -284,8 +256,7 @@
     "pk": 29,
     "fields": {
       "name": "Cambodia",
-      "code": "CM",
-      "iso_code": "5",
+      "code": "KH",
       "nationality": "Cambodian"
     }
   },
@@ -295,7 +266,6 @@
     "fields": {
       "name": "Cameroon",
       "code": "CM",
-      "iso_code": "70",
       "nationality": "Cameroonian"
     }
   },
@@ -303,10 +273,9 @@
     "model": "regions.country",
     "pk": 31,
     "fields": {
-      "name": "Columbia",
+      "name": "Colombia",
       "code": "CO",
-      "iso_code": "46",
-      "nationality": "Columbian"
+      "nationality": "Colombian"
     }
   },
   {
@@ -314,8 +283,7 @@
     "pk": 32,
     "fields": {
       "name": "Czech Republic",
-      "code": "CR",
-      "iso_code": "50",
+      "code": "CZ",
       "nationality": "Czech"
     }
   },
@@ -325,8 +293,7 @@
     "fields": {
       "name": "Costa Rica",
       "code": "CR",
-      "iso_code": "73",
-      "nationality": "\"Costa Rican\""
+      "nationality": "Costa Rican"
     }
   },
   {
@@ -335,7 +302,6 @@
     "fields": {
       "name": "Cuba",
       "code": "CU",
-      "iso_code": "75",
       "nationality": "Cuban"
     }
   },
@@ -345,7 +311,6 @@
     "fields": {
       "name": "Cyprus",
       "code": "CY",
-      "iso_code": "76",
       "nationality": "Cypriot"
     }
   },
@@ -355,7 +320,6 @@
     "fields": {
       "name": "Germany",
       "code": "DE",
-      "iso_code": "10",
       "nationality": "German"
     }
   },
@@ -365,7 +329,6 @@
     "fields": {
       "name": "Denmark",
       "code": "DK",
-      "iso_code": "7",
       "nationality": "Danish"
     }
   },
@@ -375,7 +338,6 @@
     "fields": {
       "name": "Dominica",
       "code": "DM",
-      "iso_code": "77",
       "nationality": "Dominican"
     }
   },
@@ -385,7 +347,6 @@
     "fields": {
       "name": "Ecuador",
       "code": "EC",
-      "iso_code": "78",
       "nationality": "Ecuadorean"
     }
   },
@@ -395,7 +356,6 @@
     "fields": {
       "name": "Estonia",
       "code": "EE",
-      "iso_code": "79",
       "nationality": "Estonian"
     }
   },
@@ -405,7 +365,6 @@
     "fields": {
       "name": "Egypt",
       "code": "EG",
-      "iso_code": "8",
       "nationality": "Egyptian"
     }
   },
@@ -415,7 +374,6 @@
     "fields": {
       "name": "Ethiopia",
       "code": "ET",
-      "iso_code": "80",
       "nationality": "Ethiopian"
     }
   },
@@ -425,7 +383,6 @@
     "fields": {
       "name": "Finland",
       "code": "FI",
-      "iso_code": "82",
       "nationality": "Finnish"
     }
   },
@@ -435,7 +392,6 @@
     "fields": {
       "name": "Fiji",
       "code": "FJ",
-      "iso_code": "81",
       "nationality": "Fijian"
     }
   },
@@ -445,7 +401,6 @@
     "fields": {
       "name": "France",
       "code": "FR",
-      "iso_code": "9",
       "nationality": "French"
     }
   },
@@ -455,7 +410,6 @@
     "fields": {
       "name": "United Kingdom",
       "code": "GB",
-      "iso_code": "39",
       "nationality": "British"
     }
   },
@@ -465,7 +419,6 @@
     "fields": {
       "name": "Georgia",
       "code": "GE",
-      "iso_code": "83",
       "nationality": "Georgian"
     }
   },
@@ -475,7 +428,6 @@
     "fields": {
       "name": "Ghana",
       "code": "GH",
-      "iso_code": "84",
       "nationality": "Ghanaian"
     }
   },
@@ -485,7 +437,6 @@
     "fields": {
       "name": "Guinea",
       "code": "GN",
-      "iso_code": "86",
       "nationality": "Guinean"
     }
   },
@@ -495,7 +446,6 @@
     "fields": {
       "name": "Greece",
       "code": "GR",
-      "iso_code": "11",
       "nationality": "Greek"
     }
   },
@@ -505,7 +455,6 @@
     "fields": {
       "name": "Guyana",
       "code": "GY",
-      "iso_code": "87",
       "nationality": "Guyanese"
     }
   },
@@ -515,8 +464,7 @@
     "fields": {
       "name": "Hong Kong",
       "code": "HK",
-      "iso_code": "13",
-      "nationality": "Chinese"
+      "nationality": "Chinese (HK)"
     }
   },
   {
@@ -525,7 +473,6 @@
     "fields": {
       "name": "Croatia",
       "code": "HR",
-      "iso_code": "74",
       "nationality": "Croatian"
     }
   },
@@ -535,7 +482,6 @@
     "fields": {
       "name": "Hungary",
       "code": "HU",
-      "iso_code": "14",
       "nationality": "Hungarian"
     }
   },
@@ -545,7 +491,6 @@
     "fields": {
       "name": "Indonesia",
       "code": "ID",
-      "iso_code": "16",
       "nationality": "Indonesian"
     }
   },
@@ -555,7 +500,6 @@
     "fields": {
       "name": "Ireland",
       "code": "IE",
-      "iso_code": "90",
       "nationality": "Irish"
     }
   },
@@ -565,7 +509,6 @@
     "fields": {
       "name": "India",
       "code": "IN",
-      "iso_code": "15",
       "nationality": "Indian"
     }
   },
@@ -575,7 +518,6 @@
     "fields": {
       "name": "Iraq",
       "code": "IQ",
-      "iso_code": "89",
       "nationality": "Iraqi"
     }
   },
@@ -583,9 +525,8 @@
     "model": "regions.country",
     "pk": 59,
     "fields": {
-      "name": "Iran",
+      "name": "Iran, Islamic Republic of",
       "code": "IR",
-      "iso_code": "17",
       "nationality": "Iranian"
     }
   },
@@ -594,8 +535,7 @@
     "pk": 60,
     "fields": {
       "name": "Israel",
-      "code": "IS",
-      "iso_code": "18",
+      "code": "IL",
       "nationality": "Israeli"
     }
   },
@@ -605,7 +545,6 @@
     "fields": {
       "name": "Iceland",
       "code": "IS",
-      "iso_code": "88",
       "nationality": "Icelander"
     }
   },
@@ -615,7 +554,6 @@
     "fields": {
       "name": "Italy",
       "code": "IT",
-      "iso_code": "19",
       "nationality": "Italian"
     }
   },
@@ -625,7 +563,6 @@
     "fields": {
       "name": "Jamaica",
       "code": "JM",
-      "iso_code": "91",
       "nationality": "Jamaican"
     }
   },
@@ -635,7 +572,6 @@
     "fields": {
       "name": "Jordan",
       "code": "JO",
-      "iso_code": "92",
       "nationality": "Jordanian"
     }
   },
@@ -645,7 +581,6 @@
     "fields": {
       "name": "Japan",
       "code": "JP",
-      "iso_code": "20",
       "nationality": "Japanese"
     }
   },
@@ -655,7 +590,6 @@
     "fields": {
       "name": "Kenya",
       "code": "KE",
-      "iso_code": "94",
       "nationality": "Kenyan"
     }
   },
@@ -665,7 +599,6 @@
     "fields": {
       "name": "Korea",
       "code": "KO",
-      "iso_code": "21",
       "nationality": "Korean"
     }
   },
@@ -675,18 +608,7 @@
     "fields": {
       "name": "Kuwait",
       "code": "KW",
-      "iso_code": "95",
       "nationality": "Kuwaiti"
-    }
-  },
-  {
-    "model": "regions.country",
-    "pk": 69,
-    "fields": {
-      "name": "Kazakhstan",
-      "code": "KZ",
-      "iso_code": "134",
-      "nationality": "Kazakhstani"
     }
   },
   {
@@ -695,7 +617,6 @@
     "fields": {
       "name": "Kazakhstan",
       "code": "KZ",
-      "iso_code": "93",
       "nationality": "Kazakhstani"
     }
   },
@@ -705,7 +626,6 @@
     "fields": {
       "name": "Lebanon",
       "code": "LB",
-      "iso_code": "96",
       "nationality": "Lebanese"
     }
   },
@@ -715,8 +635,7 @@
     "fields": {
       "name": "Sri Lanka",
       "code": "LK",
-      "iso_code": "33",
-      "nationality": "\"Sri Lankan\""
+      "nationality": "Sri Lankan"
     }
   },
   {
@@ -725,7 +644,6 @@
     "fields": {
       "name": "Lithuania",
       "code": "LT",
-      "iso_code": "97",
       "nationality": "Lithuanian"
     }
   },
@@ -735,7 +653,6 @@
     "fields": {
       "name": "Luxembourg",
       "code": "LU",
-      "iso_code": "98",
       "nationality": "Luxembourger"
     }
   },
@@ -745,7 +662,6 @@
     "fields": {
       "name": "Morocco",
       "code": "MA",
-      "iso_code": "104",
       "nationality": "Moroccan"
     }
   },
@@ -755,7 +671,6 @@
     "fields": {
       "name": "Monaco",
       "code": "MC",
-      "iso_code": "102",
       "nationality": "Monacan"
     }
   },
@@ -764,8 +679,7 @@
     "pk": 77,
     "fields": {
       "name": "Mexico",
-      "code": "ME",
-      "iso_code": "47",
+      "code": "MX",
       "nationality": "Mexican"
     }
   },
@@ -775,7 +689,6 @@
     "fields": {
       "name": "Myanmar",
       "code": "MM",
-      "iso_code": "105",
       "nationality": "Mayanmarese"
     }
   },
@@ -785,7 +698,6 @@
     "fields": {
       "name": "Mongolia",
       "code": "MN",
-      "iso_code": "103",
       "nationality": "Mongolian"
     }
   },
@@ -793,10 +705,9 @@
     "model": "regions.country",
     "pk": 80,
     "fields": {
-      "name": "Macau",
+      "name": "Macao",
       "code": "MO",
-      "iso_code": "42",
-      "nationality": "Macau"
+      "nationality": "Macao"
     }
   },
   {
@@ -805,7 +716,6 @@
     "fields": {
       "name": "Mauritius",
       "code": "MU",
-      "iso_code": "100",
       "nationality": "Mauritian"
     }
   },
@@ -815,7 +725,6 @@
     "fields": {
       "name": "Maldives",
       "code": "MV",
-      "iso_code": "99",
       "nationality": "Maldivan"
     }
   },
@@ -825,7 +734,6 @@
     "fields": {
       "name": "Malaysia",
       "code": "MY",
-      "iso_code": "22",
       "nationality": "Malaysian"
     }
   },
@@ -835,7 +743,6 @@
     "fields": {
       "name": "Namibia",
       "code": "NA",
-      "iso_code": "106",
       "nationality": "Namibian"
     }
   },
@@ -845,7 +752,6 @@
     "fields": {
       "name": "Nigeria",
       "code": "NG",
-      "iso_code": "108",
       "nationality": "Nigerian"
     }
   },
@@ -853,9 +759,8 @@
     "model": "regions.country",
     "pk": 86,
     "fields": {
-      "name": "Netherland",
+      "name": "Netherlands",
       "code": "NL",
-      "iso_code": "12",
       "nationality": "Dutch"
     }
   },
@@ -865,7 +770,6 @@
     "fields": {
       "name": "Norway",
       "code": "NO",
-      "iso_code": "24",
       "nationality": "Norwegian"
     }
   },
@@ -875,7 +779,6 @@
     "fields": {
       "name": "Nepal",
       "code": "NP",
-      "iso_code": "107",
       "nationality": "Nepalese"
     }
   },
@@ -885,8 +788,7 @@
     "fields": {
       "name": "New Zealand",
       "code": "NZ",
-      "iso_code": "23",
-      "nationality": "\"New Zealander\""
+      "nationality": "New Zealander"
     }
   },
   {
@@ -895,7 +797,6 @@
     "fields": {
       "name": "Oman",
       "code": "OM",
-      "iso_code": "109",
       "nationality": "Omani"
     }
   },
@@ -905,7 +806,6 @@
     "fields": {
       "name": "Panama",
       "code": "PA",
-      "iso_code": "110",
       "nationality": "Panamanian"
     }
   },
@@ -915,7 +815,6 @@
     "fields": {
       "name": "Peru",
       "code": "PE",
-      "iso_code": "112",
       "nationality": "Peruvian"
     }
   },
@@ -925,7 +824,6 @@
     "fields": {
       "name": "Philippines",
       "code": "PH",
-      "iso_code": "27",
       "nationality": "Filipino"
     }
   },
@@ -935,7 +833,6 @@
     "fields": {
       "name": "Pakistan",
       "code": "PK",
-      "iso_code": "26",
       "nationality": "Pakistani"
     }
   },
@@ -944,8 +841,7 @@
     "pk": 95,
     "fields": {
       "name": "Poland",
-      "code": "PO",
-      "iso_code": "28",
+      "code": "PL",
       "nationality": "Polish"
     }
   },
@@ -955,7 +851,6 @@
     "fields": {
       "name": "Portugal",
       "code": "PT",
-      "iso_code": "113",
       "nationality": "Portugees"
     }
   },
@@ -965,7 +860,6 @@
     "fields": {
       "name": "Paraguay",
       "code": "PY",
-      "iso_code": "111",
       "nationality": "Paraguayan"
     }
   },
@@ -975,7 +869,6 @@
     "fields": {
       "name": "Qatar",
       "code": "QA",
-      "iso_code": "115",
       "nationality": "Qatari"
     }
   },
@@ -985,7 +878,6 @@
     "fields": {
       "name": "Romania",
       "code": "RO",
-      "iso_code": "48",
       "nationality": "Romanian"
     }
   },
@@ -993,9 +885,8 @@
     "model": "regions.country",
     "pk": 100,
     "fields": {
-      "name": "Russia",
+      "name": "Russian Federation",
       "code": "RU",
-      "iso_code": "29",
       "nationality": "Russian"
     }
   },
@@ -1005,8 +896,7 @@
     "fields": {
       "name": "Saudi Arabia",
       "code": "SA",
-      "iso_code": "116",
-      "nationality": "\"Saudi Arabian\""
+      "nationality": "Saudi Arabian"
     }
   },
   {
@@ -1015,7 +905,6 @@
     "fields": {
       "name": "Seychelles",
       "code": "SC",
-      "iso_code": "119",
       "nationality": "Seychellois"
     }
   },
@@ -1025,7 +914,6 @@
     "fields": {
       "name": "Sweden",
       "code": "SE",
-      "iso_code": "34",
       "nationality": "Swedish"
     }
   },
@@ -1035,7 +923,6 @@
     "fields": {
       "name": "Singapore",
       "code": "SG",
-      "iso_code": "30",
       "nationality": "Singaporean"
     }
   },
@@ -1045,7 +932,6 @@
     "fields": {
       "name": "Slovakia",
       "code": "SK",
-      "iso_code": "120",
       "nationality": "Slovakian"
     }
   },
@@ -1055,7 +941,6 @@
     "fields": {
       "name": "Senegal",
       "code": "SN",
-      "iso_code": "117",
       "nationality": "Senegalese"
     }
   },
@@ -1065,7 +950,6 @@
     "fields": {
       "name": "Somalia",
       "code": "SO",
-      "iso_code": "121",
       "nationality": "Somali"
     }
   },
@@ -1074,8 +958,7 @@
     "pk": 108,
     "fields": {
       "name": "Spain",
-      "code": "SP",
-      "iso_code": "32",
+      "code": "ES",
       "nationality": "Spanish"
     }
   },
@@ -1085,7 +968,6 @@
     "fields": {
       "name": "Thailand",
       "code": "TH",
-      "iso_code": "37",
       "nationality": "Thai"
     }
   },
@@ -1095,7 +977,6 @@
     "fields": {
       "name": "Tunisia",
       "code": "TN",
-      "iso_code": "123",
       "nationality": "Tunisian"
     }
   },
@@ -1105,7 +986,6 @@
     "fields": {
       "name": "Turkey",
       "code": "TR",
-      "iso_code": "38",
       "nationality": "Turkish"
     }
   },
@@ -1113,9 +993,8 @@
     "model": "regions.country",
     "pk": 112,
     "fields": {
-      "name": "Taiwan",
+      "name": "Taiwan, Province of China",
       "code": "TW",
-      "iso_code": "36",
       "nationality": "Taiwanese"
     }
   },
@@ -1123,9 +1002,8 @@
     "model": "regions.country",
     "pk": 113,
     "fields": {
-      "name": "Tanzania",
+      "name": "Tanzania, United Republic of",
       "code": "TZ",
-      "iso_code": "122",
       "nationality": "Tanzanian"
     }
   },
@@ -1135,7 +1013,6 @@
     "fields": {
       "name": "Ukraine",
       "code": "UA",
-      "iso_code": "125",
       "nationality": "Ukrainian"
     }
   },
@@ -1145,7 +1022,6 @@
     "fields": {
       "name": "Uganda",
       "code": "UG",
-      "iso_code": "124",
       "nationality": "Ugandan"
     }
   },
@@ -1153,9 +1029,8 @@
     "model": "regions.country",
     "pk": 116,
     "fields": {
-      "name": "United States of America",
+      "name": "United States",
       "code": "US",
-      "iso_code": "40",
       "nationality": "American"
     }
   },
@@ -1165,7 +1040,6 @@
     "fields": {
       "name": "Uruguay",
       "code": "UY",
-      "iso_code": "127",
       "nationality": "Uruguayan"
     }
   },
@@ -1175,7 +1049,6 @@
     "fields": {
       "name": "Uzbekistan",
       "code": "UZ",
-      "iso_code": "128",
       "nationality": "Uzbekistani"
     }
   },
@@ -1183,9 +1056,8 @@
     "model": "regions.country",
     "pk": 119,
     "fields": {
-      "name": "Venezuela",
+      "name": "Venezuela, Bolivarian Republic of",
       "code": "VE",
-      "iso_code": "49",
       "nationality": "Venezuelan"
     }
   },
@@ -1193,9 +1065,8 @@
     "model": "regions.country",
     "pk": 120,
     "fields": {
-      "name": "Vietnam",
+      "name": "Viet Nam",
       "code": "VN",
-      "iso_code": "1",
       "nationality": "Vietnamese"
     }
   },
@@ -1205,7 +1076,6 @@
     "fields": {
       "name": "Yemen",
       "code": "YE",
-      "iso_code": "130",
       "nationality": "Yemeni"
     }
   },
@@ -1215,8 +1085,7 @@
     "fields": {
       "name": "South Africa",
       "code": "ZA",
-      "iso_code": "31",
-      "nationality": "\"South African\""
+      "nationality": "South African"
     }
   },
   {
@@ -1225,7 +1094,6 @@
     "fields": {
       "name": "Zambia",
       "code": "ZM",
-      "iso_code": "131",
       "nationality": "Zambian"
     }
   },
@@ -1235,7 +1103,6 @@
     "fields": {
       "name": "Zimbabwe",
       "code": "ZW",
-      "iso_code": "132",
       "nationality": "Zimbabwean"
     }
   }
