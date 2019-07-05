@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Zone(Model):
-    name = CharField(max_length=100, unique=True, help_text=_("Name"))
+    name = CharField(max_length=100, unique=True, db_index=True, help_text=_("Name"))
 
     class Meta:
         db_table = "zone"
@@ -13,7 +13,7 @@ class Zone(Model):
 
 
 class Temple(Model):
-    name = CharField(max_length=255)
+    name = CharField(max_length=255, db_index=True)
 
     class Meta:
         db_table = "temple"
