@@ -68,8 +68,10 @@ CARE_LEVEL_CHOICES = (
 RELATION_WITH_GM_CHOICES = (
     ("SS", "Spiritual son"),
     ("SD", "Spiritual daughter"),
+    ("SNE", "Spiritual nephew"),
+    ("SNI", "Spiritual niece"),
     ("SSB", "Spiritual son bhakta"),
-    ("SDB", "Spiritual Daughter Bhaktin"),
+    ("SDB", "Spiritual daughter bhaktin"),
     ("SKD", "Siksha disciple"),
     ("BTA", "Bhakta"),
     ("BTI", "Bhaktin"),
@@ -282,7 +284,7 @@ class Person(BaseModel):
     # -------------------------------------------------------------------------
 
     care_level = CharField(
-        max_length=3, choices=CARE_LEVEL_CHOICES, help_text=_("Care level")
+        max_length=5, choices=CARE_LEVEL_CHOICES, help_text=_("Care level")
     )
     relation_with_gm = CharField(
         max_length=3,
