@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from djangoql.admin import DjangoQLSearchMixin
 from reversion.admin import VersionAdmin
 
 from kosha.people.models import Person, Guru, GuruRole, Meeting, Address, Occupation
@@ -11,7 +12,7 @@ class MeetingInline(admin.StackedInline):
 
 
 @admin.register(Person)
-class PersonAdmin(VersionAdmin):
+class PersonAdmin(DjangoQLSearchMixin, VersionAdmin):
     list_display = (
         "name",
         "reference_number",

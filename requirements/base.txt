@@ -32,6 +32,7 @@ google-api-python-client==1.4.1
 dj-places==3.1.0
 django-reversion==3.0.4
 django-grappelli==2.13.1
+djangoql==0.12.6
 
 # Python apps
 iso3166==1.0
