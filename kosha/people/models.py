@@ -209,6 +209,7 @@ class Person(BaseModel):
         null=True,
         help_text=_("Locality (City, town or village)"),
     )
+    district = CharField(max_length=100, blank=True, null=True)
     state = CharField(max_length=255, blank=True, null=True, help_text=_("State"))
     country = ForeignKey(
         "regions.Country",
@@ -243,6 +244,7 @@ class Person(BaseModel):
         verbose_name=_("Permanent locality"),
         help_text=_("Permanent Locality (City, town or village)"),
     )
+    permanent_district = CharField(max_length=100, blank=True, null=True)
     permanent_state = CharField(
         max_length=255, blank=True, null=True, verbose_name=_("Permanent state")
     )
