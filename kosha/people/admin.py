@@ -3,8 +3,9 @@ from django.contrib import admin
 from kosha.people.models import Person, Guru, GuruRole, Meeting, Address, Occupation
 
 
-class PresentAddressInline(admin.TabularInline):
-    model = Address
+class MeetingInline(admin.StackedInline):
+    model = Meeting
+    extra = 1
 
 
 @admin.register(Person)
@@ -38,6 +39,7 @@ class PersonAdmin(admin.ModelAdmin):
         "updated_at",
         "updated_by",
     )
+    inlines = (MeetingInline,)
     fieldsets = (
         (
             "Basic details",

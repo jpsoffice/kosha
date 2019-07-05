@@ -547,11 +547,7 @@ class Meeting(BaseModel):
     place = PlacesField()
     summary = TextField(max_length=1024, default="", help_text=_("Meeting summary"))
     guru = ForeignKey(
-        Guru,
-        null=True,
-        on_delete=SET_NULL,
-        related_name="people_meetings",
-        default=settings.GURU_MAHARAJ_ID,
+        Guru, null=True, on_delete=SET_NULL, related_name="people_meetings"
     )
     person = ForeignKey(Person, null=True, related_name="meetings", on_delete=SET_NULL)
 
