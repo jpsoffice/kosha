@@ -306,7 +306,7 @@ JET_SIDE_MENU_COMPACT = True
 # dj-places
 # ------------------------------------------------------------------------------
 PLACES_MAPS_API_KEY = env("PLACES_MAPS_API_KEY")
-PLACES_MAP_WIDGET_HEIGHT = 480
+PLACES_MAP_WIDGET_HEIGHT = 250
 PLACES_MAP_OPTIONS = '{"center": { "lat": 38.971584, "lng": -95.235072 }, "zoom": 10}'
 PLACES_MARKER_OPTIONS = '{"draggable": true}'
 
