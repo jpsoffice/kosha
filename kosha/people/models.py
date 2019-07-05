@@ -104,6 +104,9 @@ class GuruRole(BaseModel):
     class Meta:
         db_table = "guru_role"
 
+    def __str__(self):
+        return self.name.title()
+
 
 class Guru(BaseModel):
     name = CharField(max_length=255, unique=True, help_text=_("Name"))
@@ -120,13 +123,16 @@ class Guru(BaseModel):
     class Meta:
         db_table = "guru"
 
+    def __str__(self):
+        return self.code
+
 
 # Create your models here.
 class Person(BaseModel):
 
     # Basic fields
     reference_number = CharField(
-        max_length=10,
+        max_length=15,
         editable=False,
         unique=True,
         help_text=_("Unique reference number for the devotee"),
@@ -141,6 +147,7 @@ class Person(BaseModel):
     dob_type = CharField(
         max_length=1,
         choices=DOB_TYPE_CHOICES,
+        null=True,
         default="A",
         verbose_name=_("Date of birth type"),
     )
@@ -365,7 +372,9 @@ class Person(BaseModel):
         ),
     )
 
-    is_gm_siksha_guru = BooleanField(verbose_name=_("Is Guru Maharaj Siksha Guru"))
+    is_gm_siksha_guru = BooleanField(
+        blank=True, null=True, verbose_name=_("Is Guru Maharaj Siksha Guru")
+    )
 
     # Sisksha gurus
     siksha_gurus = ManyToManyField(Guru, blank=True, help_text=_("Siksha gurus"))
