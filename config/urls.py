@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from kosha.regions.views import CountryAutocomplete
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -24,6 +25,11 @@ elif settings.ADMIN_THEME == "GRAPPELLI":
     urlpatterns += [path("grappelli/", include("grappelli.urls"))]
 
 urlpatterns += [
+    path(
+        settings.ADMIN_URL + "country-autocomplete/",
+        CountryAutocomplete.as_view(),
+        name="country-autocomplete",
+    ),
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("kosha.users.urls", namespace="users")),

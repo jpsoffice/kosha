@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from dal_admin_filters import AutocompleteFilter
 from djangoql.admin import DjangoQLSearchMixin
 from reversion.admin import VersionAdmin
 
@@ -11,8 +12,17 @@ class MeetingInline(admin.StackedInline):
     extra = 1
 
 
+class CountryFilter(AutocompleteFilter):
+    title = "Country"  # filter's title
+    field_name = "country"  # field name - ForeignKey to Country model
+    autocomplete_url = "country-autocomplete"  # url name of Country autocomplete view
+
+
 @admin.register(Person)
 class PersonAdmin(DjangoQLSearchMixin, VersionAdmin):
+    class Media:
+        pass  # js = ('admin/js/vendor/jquery/jquery.min.js', 'admin/js/jquery.init.js',)
+
     list_display = (
         "name",
         "reference_number",
@@ -29,7 +39,7 @@ class PersonAdmin(DjangoQLSearchMixin, VersionAdmin):
         "care_level",
         "relation_with_gm",
         "nationality",
-        "country",
+        CountryFilter,
         "zone",
         "temple",
     )

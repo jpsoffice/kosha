@@ -63,6 +63,8 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
 ]
 
+DJANGO_APPS += ["dal", "dal_select2", "dal_admin_filters"]
+
 if ADMIN_THEME == "JET":
     DJANGO_APPS += ["jet.dashboard", "jet"]
 elif ADMIN_THEME == "GRAPPELLI":
