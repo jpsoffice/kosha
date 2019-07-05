@@ -1,6 +1,11 @@
 from django.contrib import admin
 
 from djangoql.admin import DjangoQLSearchMixin
+from django_admin_listfilter_dropdown.filters import (
+    DropdownFilter,
+    RelatedDropdownFilter,
+    ChoiceDropdownFilter,
+)
 from reversion.admin import VersionAdmin
 
 from kosha.people.models import Person, Guru, GuruRole, Meeting, Address, Occupation
@@ -26,12 +31,12 @@ class PersonAdmin(DjangoQLSearchMixin, VersionAdmin):
         "marital_status",
     )
     list_filter = (
-        "care_level",
-        "relation_with_gm",
-        "nationality",
-        "country",
-        "zone",
-        "temple",
+        ("care_level", DropdownFilter),
+        ("relation_with_gm", DropdownFilter),
+        ("nationality", RelatedDropdownFilter),
+        ("country", RelatedDropdownFilter),
+        ("zone", RelatedDropdownFilter),
+        ("temple", RelatedDropdownFilter),
     )
     search_fields = ("reference_number", "name", "mobile", "email")
     readonly_fields = (

@@ -70,6 +70,7 @@ elif ADMIN_THEME == "GRAPPELLI":
 
 DJANGO_APPS += ["django.contrib.admin"]
 THIRD_PARTY_APPS = [
+    "django_admin_listfilter_dropdown",
     "crispy_forms",
     "allauth",
     "allauth.account",
