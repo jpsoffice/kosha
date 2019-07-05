@@ -1,13 +1,14 @@
 from django.contrib import admin
+from reversion.admin import VersionAdmin
 
 from kosha.organizations.models import Temple, Zone
 
 
 @admin.register(Temple)
-class TempleAdmin(admin.ModelAdmin):
+class TempleAdmin(VersionAdmin):
     pass
 
 
 @admin.register(Zone)
-class ZoneAdmin(admin.ModelAdmin):
+class ZoneAdmin(VersionAdmin):
     pass

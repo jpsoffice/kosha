@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from reversion.admin import VersionAdmin
+
 from kosha.people.models import Person, Guru, GuruRole, Meeting, Address, Occupation
 
 
@@ -9,7 +11,7 @@ class MeetingInline(admin.StackedInline):
 
 
 @admin.register(Person)
-class PersonAdmin(admin.ModelAdmin):
+class PersonAdmin(VersionAdmin):
     list_display = (
         "name",
         "reference_number",
@@ -154,20 +156,20 @@ class PersonAdmin(admin.ModelAdmin):
 
 
 @admin.register(Guru)
-class GuruAdmin(admin.ModelAdmin):
+class GuruAdmin(VersionAdmin):
     pass
 
 
 @admin.register(GuruRole)
-class GuruRoleAdmin(admin.ModelAdmin):
+class GuruRoleAdmin(VersionAdmin):
     pass
 
 
 @admin.register(Meeting)
-class MeetingAdmin(admin.ModelAdmin):
+class MeetingAdmin(VersionAdmin):
     pass
 
 
 @admin.register(Occupation)
-class OccupationAdmin(admin.ModelAdmin):
+class OccupationAdmin(VersionAdmin):
     pass

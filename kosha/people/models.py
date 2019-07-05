@@ -20,10 +20,11 @@ from django.db.models import (
     SET_NULL,
 )
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import smart_text
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
-from places.fields import PlacesField
+from places.fields import PlacesField as _PlacesField
 
 from kosha.useful.validators import phone_regex
 from kosha.useful.models import BaseModel
@@ -100,6 +101,12 @@ DATA_SOURCE_CHOICES = (
 )
 
 
+class PlacesField(_PlacesField):
+    def value_to_string(self, obj):
+        value = self.value_from_object(obj)
+        return smart_text(value)
+
+
 class GuruRole(BaseModel):
     name = CharField(max_length=50, unique=True, db_index=True)
 
@@ -134,7 +141,6 @@ class Guru(BaseModel):
         return self.code
 
 
-# Create your models here.
 class Person(BaseModel):
 
     # Basic fields
