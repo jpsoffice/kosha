@@ -50,7 +50,7 @@ ROOT_URLCONF = "config.urls"
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = "config.wsgi.application"
 
-ENABLE_JET = os.environ.get("ENABLE_JET", "true").lower() == "true"
+ADMIN_THEME = os.environ.get("ADMIN_THEME")
 # APPS
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
@@ -63,8 +63,10 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
 ]
 
-if ENABLE_JET:
+if ADMIN_THEME == "JET":
     DJANGO_APPS += ["jet.dashboard", "jet"]
+elif ADMIN_THEME == "GRAPPELLI":
+    DJANGO_APPS += ["grappelli"]
 
 DJANGO_APPS += ["django.contrib.admin"]
 THIRD_PARTY_APPS = [

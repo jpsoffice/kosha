@@ -13,13 +13,15 @@ urlpatterns = [
 ]
 
 # Django Admin, use {% url 'admin:index' %}
-if settings.ENABLE_JET:
+if settings.ADMIN_THEME == "JET":
     urlpatterns += [
         path(r"^jet/", include("jet.urls", "jet")),  # Django JET URLS
         path(
             r"^jet/dashboard/", include("jet.dashboard.urls", "jet-dashboard")
         ),  # Django JET dashboard URLS
     ]
+elif settings.ADMIN_THEME == "GRAPPELLI":
+    urlpatterns += [path("grappelli/", include("grappelli.urls"))]
 
 urlpatterns += [
     path(settings.ADMIN_URL, admin.site.urls),
