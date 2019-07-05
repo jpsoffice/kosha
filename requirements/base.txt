@@ -34,6 +34,7 @@ django-reversion==3.0.4
 django-grappelli==2.13.1
 djangoql==0.12.6
 django-admin-list-filter-dropdown==1.0.2
+dal-admin-filters==0.3.3
 
 # Python apps
 iso3166==1.0
