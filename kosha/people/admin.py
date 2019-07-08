@@ -163,6 +163,11 @@ class PersonAdmin(DjangoQLSearchMixin, VersionAdmin):
         ),
     )
 
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        queryset.select_related(*self.list_select_related)
+        return queryset
+
 
 @admin.register(Guru)
 class GuruAdmin(VersionAdmin):
