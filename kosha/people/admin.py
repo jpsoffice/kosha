@@ -24,6 +24,8 @@ class PersonAdmin(DjangoQLSearchMixin, VersionAdmin):
         "relation_with_gm",
         "marital_status",
         "temple",
+        "first_initiation_place",
+        "first_initiation_date",
     )
     list_select_related = ("nationality", "zone", "temple", "country")
     list_filter = (
@@ -34,7 +36,14 @@ class PersonAdmin(DjangoQLSearchMixin, VersionAdmin):
         "relation_with_gm",
         "temple",
     )
-    search_fields = ("reference_number", "name", "mobile", "email")
+    search_fields = (
+        "reference_number",
+        "name",
+        "initiatied_name",
+        "mobile",
+        "email",
+        "first_initiation_place",
+    )
     readonly_fields = (
         # "reference_number",
         "approved_by",
