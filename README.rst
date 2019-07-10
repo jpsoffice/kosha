@@ -9,6 +9,8 @@ A devotee database system
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
      :target: https://github.com/ambv/black
      :alt: Black code style
+.. image:: https://travis-ci.org/jpsoffice/kosha.svg?branch=master
+    :target: https://travis-ci.org/jpsoffice/kosha
 
 
 :License: AGPLv3
