@@ -118,10 +118,10 @@ class GuruRole(BaseModel):
 
 
 class Guru(BaseModel):
-    name = CharField(max_length=255, unique=True, db_index=True, help_text=_("Name"))
+    name = CharField(max_length=255, unique=True, db_index=True, verbose_name=_("Name"))
     code = CharField(max_length=5, unique=True, null=True, db_index=True)
     legal_name = CharField(
-        max_length=255, blank=True, null=True, help_text=_("Legal name")
+        max_length=255, blank=True, null=True, verbose_name=_("Legal name")
     )
 
     user = OneToOneField(
@@ -130,7 +130,7 @@ class Guru(BaseModel):
         blank=True,
         on_delete=SET_NULL,
         db_index=True,
-        help_text=_("User"),
+        verbose_name=_("User"),
     )
     roles = ManyToManyField(GuruRole, blank=True)
 
@@ -150,17 +150,17 @@ class Person(BaseModel):
         db_index=True,
         help_text=_("Unique reference number for the devotee"),
     )
-    name = CharField(max_length=100, db_index=True, help_text=_("Name"))
+    name = CharField(max_length=100, db_index=True, verbose_name=_("Name"))
     initiated_name = CharField(
         max_length=100,
         blank=True,
         default="",
         db_index=True,
-        help_text=_("Initiated name"),
+        verbose_name=_("Initiated name"),
     )
-    photo = ImageField(max_length=100, blank=True, null=True, help_text=_("Photo"))
+    photo = ImageField(max_length=100, blank=True, null=True, verbose_name=_("Photo"))
     gender = CharField(
-        max_length=1, choices=GENDER_CHOICES, db_index=True, help_text=_("Gender")
+        max_length=1, choices=GENDER_CHOICES, db_index=True, verbose_name=_("Gender")
     )
     dob = DateField(verbose_name=_("Date of birth"), blank=True, null=True)
     dob_type = CharField(
@@ -178,7 +178,7 @@ class Person(BaseModel):
         blank=True,
         null=True,
         db_index=True,
-        help_text=_("Life status"),
+        verbose_name=_("Life status"),
     )
     #  age
     nationality = ForeignKey(
@@ -189,7 +189,7 @@ class Person(BaseModel):
         related_name="nationals",
         on_delete=SET_NULL,
         db_index=True,
-        help_text=_("Nationality"),
+        verbose_name=_("Nationality"),
     )
     occupation = ForeignKey(
         "Occupation",
@@ -197,7 +197,7 @@ class Person(BaseModel):
         null=True,
         on_delete=SET_NULL,
         db_index=True,
-        help_text=_("Occupation"),
+        verbose_name=_("Occupation"),
     )
 
     # Contact details
@@ -208,7 +208,7 @@ class Person(BaseModel):
         blank=True,
         null=True,
         db_index=True,
-        help_text=_("Mobile number"),
+        verbose_name=_("Mobile number"),
     )
     phone = CharField(
         validators=[phone_regex],
@@ -216,19 +216,19 @@ class Person(BaseModel):
         blank=True,
         null=True,
         db_index=True,
-        help_text=_("Phone number"),
+        verbose_name=_("Phone number"),
     )
-    email = EmailField(blank=True, null=True, db_index=True, help_text=_("Email "))
+    email = EmailField(blank=True, null=True, db_index=True, verbose_name=_("Email "))
 
     # Present address
     address_line_1 = CharField(
-        max_length=100, blank=True, null=True, help_text=_("Address line 1")
+        max_length=100, blank=True, null=True, verbose_name=_("Address line 1")
     )
     address_line_2 = CharField(
-        max_length=100, blank=True, null=True, help_text=_("Address line 2")
+        max_length=100, blank=True, null=True, verbose_name=_("Address line 2")
     )
     zipcode = CharField(
-        max_length=10, blank=True, null=True, db_index=True, help_text=_("Zipcode")
+        max_length=10, blank=True, null=True, db_index=True, verbose_name=_("Zipcode")
     )
     locality = CharField(
         max_length=100,
@@ -239,7 +239,7 @@ class Person(BaseModel):
     )
     district = CharField(max_length=100, blank=True, null=True, db_index=True)
     state = CharField(
-        max_length=255, blank=True, null=True, db_index=True, help_text=_("State")
+        max_length=255, blank=True, null=True, db_index=True, verbose_name=_("State")
     )
     country = ForeignKey(
         "regions.Country",
@@ -247,7 +247,7 @@ class Person(BaseModel):
         related_name="present_persons",
         on_delete=SET_NULL,
         db_index=True,
-        help_text=_("Country"),
+        verbose_name=_("Country"),
     )
 
     # Permanent address
@@ -285,7 +285,7 @@ class Person(BaseModel):
         null=True,
         related_name="permanent_persons",
         on_delete=SET_NULL,
-        help_text=_("Permanent country"),
+        verbose_name=_("Permanent country"),
     )
 
     zone = ForeignKey(
@@ -294,7 +294,7 @@ class Person(BaseModel):
         null=True,
         on_delete=SET_NULL,
         db_index=True,
-        help_text=_("Zone"),
+        verbose_name=_("Zone"),
     )
 
     # Family details
@@ -304,13 +304,13 @@ class Person(BaseModel):
         max_length=3,
         choices=MARITAL_STATUS_CHOICES,
         db_index=True,
-        help_text=_("Marital status"),
+        verbose_name=_("Marital status"),
     )
     spouse = CharField(
-        max_length=100, blank=True, default="", help_text=_("Spouse name")
+        max_length=100, blank=True, default="", verbose_name=_("Spouse name")
     )
     children_names = CharField(
-        max_length=500, blank=True, default="", help_text=_("Names of children")
+        max_length=500, blank=True, default="", verbose_name=_("Names of children")
     )
 
     # Spiritual details
@@ -320,14 +320,14 @@ class Person(BaseModel):
         max_length=5,
         choices=CARE_LEVEL_CHOICES,
         db_index=True,
-        help_text=_("Care level"),
+        verbose_name=_("Care level"),
     )
     relation_with_gm = CharField(
         max_length=3,
         verbose_name=_("Relation with Guru Maharaj"),
         choices=RELATION_WITH_GM_CHOICES,
         db_index=True,
-        help_text=_("Relation with Guru Maharaj"),
+        #help_text=_("Relation with Guru Maharaj"),
     )
 
     # shelter details
@@ -337,13 +337,13 @@ class Person(BaseModel):
         null=True,
         on_delete=SET_NULL,
         related_name="sheltered_disciples",
-        help_text=_("Shelter Guru"),
+        verbose_name=_("Shelter Guru"),
     )
     shelter_place = PlacesField(
-        blank=True, null=True, db_index=True, help_text=_("Shelter place")
+        blank=True, null=True, db_index=True, verbose_name=_("Shelter place")
     )
     shelter_date = DateField(
-        blank=True, null=True, db_index=True, help_text=_("Shelter date")
+        blank=True, null=True, db_index=True, verbose_name=_("Shelter date")
     )
     shelter_recommendation = CharField(
         max_length=200,
@@ -359,13 +359,13 @@ class Person(BaseModel):
         null=True,
         on_delete=SET_NULL,
         related_name="first_initiation_disciples",
-        help_text=_("First initiation Guru"),
+        verbose_name=_("First initiation Guru"),
     )
     first_initiation_place = PlacesField(
-        blank=True, null=True, db_index=True, help_text=_("First initiation place")
+        blank=True, null=True, db_index=True, verbose_name=_("First initiation place")
     )
     first_initiation_date = DateField(
-        blank=True, null=True, db_index=True, help_text=_("First initiation date")
+        blank=True, null=True, db_index=True, verbose_name=_("First initiation date")
     )
     first_initiation_recommendation = CharField(
         max_length=200,
@@ -381,13 +381,13 @@ class Person(BaseModel):
         null=True,
         on_delete=SET_NULL,
         related_name="second_initiation_disciples",
-        help_text=_("Second initiation Guru"),
+        verbose_name=_("Second initiation Guru"),
     )
     second_initiation_place = PlacesField(
-        blank=True, null=True, db_index=True, help_text=_("Second initiation place")
+        blank=True, null=True, db_index=True, verbose_name=_("Second initiation place")
     )
     second_initiation_date = DateField(
-        blank=True, null=True, db_index=True, help_text=_("Second initiation date")
+        blank=True, null=True, db_index=True, verbose_name=_("Second initiation date")
     )
     second_initiation_recommendation = CharField(
         max_length=200,
@@ -398,10 +398,10 @@ class Person(BaseModel):
 
     # Aspiring details
     aspiring_date = DateField(
-        blank=True, null=True, db_index=True, help_text=_("Aspiring date")
+        blank=True, null=True, db_index=True, verbose_name=_("Aspiring date")
     )
     aspiring_place = PlacesField(
-        blank=True, null=True, db_index=True, help_text=_("Aspiring place")
+        blank=True, null=True, db_index=True, verbose_name=_("Aspiring place")
     )
 
     # Outside initiation
@@ -429,25 +429,25 @@ class Person(BaseModel):
     )
 
     # Sisksha gurus
-    siksha_gurus = ManyToManyField(Guru, blank=True, help_text=_("Siksha gurus"))
+    siksha_gurus = ManyToManyField(Guru, blank=True, verbose_name=_("Siksha gurus"))
 
     # Devotional details
     # -------------------------------------------------------------------------
-    # devotional_services = ManyToManyField(DevotionalService, blank=True, null=True, help_text=_("Devotional services"))
+    # devotional_services = ManyToManyField(DevotionalService, blank=True, null=True, verbose_names=_("Devotional services"))
     kc_start_date = DateField(
-        blank=True, null=True, help_text=_("Start date for Krishna Consciousness")
+        blank=True, null=True, verbose_name=_("Start date for Krishna Consciousness")
     )
     is_following_four_regs = BooleanField(
-        blank=True, null=True, help_text=_("Is following 4 regulative principles?")
+        blank=True, null=True, verbose_name=_("Is following 4 regulative principles?")
     )
     following_four_regs_since = DateField(
-        blank=True, null=True, help_text=_("Following 4 regulative principles since")
+        blank=True, null=True, verbose_name=_("Following 4 regulative principles since")
     )
     chanting_rounds_number = PositiveIntegerField(
-        blank=True, null=True, help_text=_("Number of rounds chanting")
+        blank=True, null=True, verbose_name=_("Number of rounds chanting")
     )
     chanting_sixteen_rounds_since = DateField(
-        blank=True, null=True, help_text=_("Chanting 16 rounds since")
+        blank=True, null=True, verbose_name=_("Chanting 16 rounds since")
     )
 
     # Temple details
@@ -459,14 +459,14 @@ class Person(BaseModel):
         on_delete=SET_NULL,
         related_name="people",
         db_index=True,
-        help_text=_("Temple connected with"),
+        verbose_name=_("Temple connected with"),
     )
     temple_role = CharField(
         max_length=3,
         choices=TEMPLE_ROLE_CHOICES,
         blank=True,
         default="",
-        help_text=_("Temple connection mode"),
+        verbose_name=_("Temple connection mode"),
     )
 
     # meetings back referenced from Meeting model
@@ -476,17 +476,17 @@ class Person(BaseModel):
 
     # Counselor details
     counselor_name = CharField(
-        max_length=255, blank=True, default="", help_text=_("Name of counselor")
+        max_length=255, blank=True, default="", verbose_name=_("Name of counselor")
     )
     counselor_mobile = CharField(
         validators=[phone_regex],
         max_length=17,
         blank=True,
         null=True,
-        help_text=_("Mobile number of counselor"),
+        verbose_name=_("Mobile number of counselor"),
     )
     counselor_email = EmailField(
-        blank=True, null=True, help_text=_("Email of counselor")
+        blank=True, null=True, verbose_name=_("Email of counselor")
     )
 
     # Local care coordinator details
@@ -494,17 +494,18 @@ class Person(BaseModel):
         max_length=255,
         blank=True,
         null=True,
-        help_text=_("Name of local care coordinator"),
+        #help_text=_("Name of local care coordinator"),
     )
     local_care_coordinator_mobile = CharField(
         validators=[phone_regex],
         max_length=17,
         blank=True,
         null=True,
-        help_text=_("Mobile number of local care coordinator"),
+        #help_text=_("Mobile number of local care coordinator"),
     )
     local_care_coordinator_email = EmailField(
-        blank=True, null=True, help_text=_("Email of local care coordinator")
+        blank=True, null=True, 
+        #help_text=_("Email of local care coordinator")
     )
 
     # National care coordinator details
@@ -512,21 +513,21 @@ class Person(BaseModel):
         max_length=255,
         blank=True,
         null=True,
-        help_text=_("Name of national care coordinator"),
+        #help_text=_("Name of national care coordinator"),
     )
     national_care_coordinator_mobile = CharField(
         validators=[phone_regex],
         max_length=17,
         blank=True,
         null=True,
-        help_text=_("Mobile number of national care coordinator"),
+        #help_text=_("Mobile number of national care coordinator"),
     )
     national_care_coordinator_email = EmailField(
-        blank=True, null=True, help_text=_("Email of national care coordinator")
+        blank=True, null=True, #help_text=_("Email of national care coordinator")
     )
 
     intensive_care = BooleanField(
-        blank=True, null=True, help_text=_("Is intensive care needed?")
+        blank=True, null=True, verbose_name=_("Is intensive care needed?")
     )
 
     # Communication preferences
@@ -565,7 +566,7 @@ class Person(BaseModel):
         editable=False,
         related_name="+",
         on_delete=SET_NULL,
-        help_text="Updated by user",
+        verbose_name="Updated by user",
     )
     approved = BooleanField(blank=True, null=True)
     approved_by = ForeignKey(
@@ -575,7 +576,7 @@ class Person(BaseModel):
         editable=False,
         related_name="+",
         on_delete=SET_NULL,
-        help_text="Approved by user",
+        verbose_name="Approved by user",
     )
     approved_at = DateTimeField(blank=True, null=True, editable=False)
 
@@ -594,7 +595,7 @@ class Person(BaseModel):
 class Meeting(BaseModel):
     date = DateField()
     place = PlacesField()
-    summary = TextField(max_length=1024, default="", help_text=_("Meeting summary"))
+    summary = TextField(max_length=1024, default="", verbose_name=_("Meeting summary"))
     guru = ForeignKey(
         Guru, null=True, on_delete=SET_NULL, related_name="people_meetings"
     )
@@ -610,7 +611,7 @@ class Meeting(BaseModel):
 
 
 class ContactMode(BaseModel):
-    name = CharField(max_length=100, help_text=_("Name of contact mode"))
+    name = CharField(max_length=100, verbose_name=_("Name of contact mode"))
 
     class Meta:
         db_table = "contact_mode"
@@ -620,7 +621,7 @@ class ContactMode(BaseModel):
 
 
 class CommunicationChannel(BaseModel):
-    name = CharField(max_length=100, help_text=_("Name of communication channel"))
+    name = CharField(max_length=100, verbose_name=_("Name of communication channel"))
 
     class Meta:
         db_table = "communication_channel"
@@ -630,7 +631,7 @@ class CommunicationChannel(BaseModel):
 
 
 class SubscriptionTopic(BaseModel):
-    name = CharField(max_length=100, help_text=_("Name of subscription topic"))
+    name = CharField(max_length=100, verbose_name=_("Name of subscription topic"))
 
     class Meta:
         db_table = "subscription_topic"
@@ -640,7 +641,7 @@ class SubscriptionTopic(BaseModel):
 
 
 class EmailTopic(BaseModel):
-    name = CharField(max_length=100, help_text=_("Name of email topic"))
+    name = CharField(max_length=100, verbose_name=_("Name of email topic"))
 
     class Meta:
         db_table = "email_topic"
@@ -650,17 +651,17 @@ class EmailTopic(BaseModel):
 
 
 class Address(BaseModel):
-    addess_line_1 = CharField(max_length=100, help_text=_("Address line 1"))
+    addess_line_1 = CharField(max_length=100, verbose_name=_("Address line 1"))
     address_line_2 = CharField(
-        max_length=100, blank=True, default="", help_text=_("Address line 2")
+        max_length=100, blank=True, default="", verbose_name=_("Address line 2")
     )
-    zipcode = CharField(max_length=10, help_text=_("Zipcode"))
+    zipcode = CharField(max_length=10, verbose_name=_("Zipcode"))
     locality = CharField(
         max_length=100, help_text=_("Locality (City, town or village)")
     )
-    state = CharField(max_length=255, help_text=_("State"))
+    state = CharField(max_length=255, verbose_name=_("State"))
     country = ForeignKey(
-        "regions.Country", null=True, on_delete=SET_NULL, help_text=_("Country")
+        "regions.Country", null=True, on_delete=SET_NULL, verbose_name=_("Country")
     )
 
     class Meta:
@@ -675,7 +676,7 @@ class Address(BaseModel):
 
 
 class Occupation(BaseModel):
-    name = CharField(max_length=100, unique=True, db_index=True, help_text=_("Name"))
+    name = CharField(max_length=100, unique=True, db_index=True, verbose_name=_("Name"))
 
     class Meta:
         db_table = "occupation"
