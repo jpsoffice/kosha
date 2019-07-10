@@ -146,7 +146,6 @@ class Person(BaseModel):
     # Basic fields
     reference_number = CharField(
         max_length=15,
-        editable=False,
         unique=True,
         db_index=True,
         help_text=_("Unique reference number for the devotee"),

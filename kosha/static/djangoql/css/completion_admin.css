@@ -1,0 +1,9 @@
+#changelist #toolbar form textarea#searchbar {
+  width: 30%;
+  height: 32px !important;
+}
+
+.djangoql-toggle {
+  margin-right: 10px;
+  display: block !important;
+}
